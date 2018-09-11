@@ -10,43 +10,42 @@ int main(){
         l*=100;
         queue<int>left;
         queue<int>right;
-        bool flag = false,flag1=false;
         for(int i=0;i<m;i++){
             int len;
             string dir;
             cin>>len>>dir;
-            if(flag1==false and dir=="left") flag=true;
             if(dir=="left") left.push(len);
             else right.push(len);
-            flag1 = true;
         }
-        int repetation = 0;
+        int repetation = 0,flag=1;
         while(!left.empty() or !right.empty()){
+            repetation++;
             int temp = 0;
-            if(!left.empty()){
-                while(1){
-                    if(!left.empty() and temp+left.front()<=l){
-                        temp+=left.front();
-                        left.pop();
+            if(flag){
+                if(!left.empty()){
+                    while(1){
+                        if(!left.empty() and temp+left.front()<=l){
+                            temp+=left.front();
+                            left.pop();
+                        }
+                        else break;
                     }
-                    else break;
                 }
             }
-            repetation++;
-            temp=0;
-            if(!right.empty()){
-                while(1){
-                    if(!right.empty() and temp+right.front()<=l){
-                        temp+=right.front();
-                        right.pop();
+            else{
+                if(!right.empty()){
+                    while(1){
+                        if(!right.empty() and temp+right.front()<=l){
+                            temp+=right.front();
+                            right.pop();
+                        }
+                        else break;
                     }
-                    else break;
                 }
             }
-            repetation++;
+            flag = 1-flag;
         }
-        if(flag) printf("%d\n",repetation);
-        else printf("%d\n",repetation-1);
+        printf("%d\n",repetation);
     }
     return 0;
 }
