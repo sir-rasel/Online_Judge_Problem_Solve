@@ -1,75 +1,86 @@
-#include <iostream>
-#include <map>
-#include <string>
-#include <vector>
-#include <cstdio>
+#include <bits/stdc++.h>
 using namespace std;
 
+const string a1="register",a2="login",a3="logout",
+a4="fail: user already exists",a5= "success: new user added",
+a6="fail: no such user",a7="fail: incorrect password",a8="fail: already logged in",a9="success: user logged in",
+a10="fail: no such user",a11="fail: already logged out",a12="success: user logged out" ;
+
+class ko{
+public:
+     bool register1,login ;
+     string password ;
+     ko()
+     {
+          register1=false ;
+          login=false ;
+     }
+};
+
+short n;
+map <string,ko> l98 ;
+
+void q1(){
+     string ji,ko;
+     cin>>ji>>ko;
+     if(l98[ji].register1) cout<<a4;
+     else
+     {
+          l98[ji].register1=true ;
+          l98[ji].password=ko ;
+          cout<<a5 ;
+     }
+}
+
+void q2(){
+     string ji,ko ;
+     cin>>ji>>ko ;
+     if(l98[ji].register1)
+     {
+          if(l98[ji].login && l98[ji].password==ko)
+               cout<<a8 ;
+          else if(l98[ji].password==ko)
+          {
+               cout<<a9 ;
+               l98[ji].login=true ;
+          }
+          else
+               cout<<a7 ;
+     }
+     else
+          cout<<a6 ;
+}
+
+void q3(){
+     string ji ;
+     cin>>ji ;
+     if(l98[ji].register1)
+     {
+          if(l98[ji].login)
+          {
+               l98[ji].login=false ;
+               cout<<a12 ;
+          }
+          else
+               cout<<a11 ;
+     }
+     else
+          cout<<a10 ;
+}
+
+void solve(string h){
+     if(h==a1) q1();
+     else if(h==a2) q2();
+     else q3();
+}
+
 int main(){
-    int test;
-    string a,b,password;
-    cin>>test;
-    getchar();
-    map<string,string>m;
-    map<string,int>log;
-    map<string,int>logout;
-    vector<string>vec;
-    while(test--){
-        cin>>a;
-        int flag=0;
-        if(a=="register"){
-            cin>>b>>password;
-            for(vector<string>::iterator i=vec.begin();i!=vec.end();i++){
-                if(*i==b and m[*i]==password){
-                    flag++;
-                    break;
-                }
-            }
-            if(flag!=0) cout<<"fail: user already exists"<<endl;
-            else {
-                cout<<"success: new user added"<<endl;
-                m[b]=password;
-                vec.push_back(b);
-            }
-        }
-        else if(a=="login"){
-            cin>>b>>password;
-            for(vector<string>::iterator i=vec.begin();i!=vec.end();i++){
-                if(*i==b){
-                    flag++;
-                    break;
-                }
-            }
-            if(flag==0) cout<<"fail: no such user"<<endl;
-            else if(password!=m[b]){
-                cout<<"fail: incorrect password"<<endl;
-            }
-            else if(password==m[b] and log[b]!=10) {
-                cout<<"success: user logged in"<<endl;
-                log[b]=10;
-                logout[b]=0;
-            }
-            else {
-                cout<<"fail: already logged in"<<endl;
-            }
-        }
-        else if(a=="logout"){
-            cin>>b;
-            for(vector<string>::iterator i=vec.begin();i!=vec.end();i++){
-                if(*i==b){
-                    flag++;
-                    break;
-                }
-            }
-            if(flag==0) cout<<"fail: no such user"<<endl;
-            else if(logout[b]==10) cout<<"fail: already logged out"<<endl;
-            else if(log[b]==10) {
-                cout<<"success: user logged out"<<endl;
-                logout[b]=10;
-                log[b]=0;
-            }
-            else cout<<"fail: no such user"<<endl;
-        }
+    cin>>n ;
+    for(short i=0;i<n;i++){
+        string o;
+        cin>>o;
+        solve(o);
+        cout<<endl;
     }
     return 0;
 }
