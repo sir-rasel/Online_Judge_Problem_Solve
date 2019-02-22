@@ -11,6 +11,7 @@ etc online judge.
 3. Searchng
 4. Tree Algorithm
 5. Graph theory
+6. Number theory
 6. Dynamic programming.
 7. Adhoc
 8. Implementation
