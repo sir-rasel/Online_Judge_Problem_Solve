@@ -27,13 +27,11 @@ int main(){
             char card = p[turn].front();
             p[turn].pop_front();
             deck.push_front(card);
-
             if (fcount.count(card)){
                 last_face = turn;
                 cover_count = fcount[card] + 1;
                 turn = (turn + 1) % 2;
             }
-            printf("Turn = %d, cover-count = %d\n",turn,cover_count);
             if (cover_count){
                 --cover_count;
                 if (!cover_count){
@@ -48,7 +46,7 @@ int main(){
                 turn = (turn + 1) % 2;
         }
         int winner = (turn + 1) % 2;
-        printf("%d%3d\n", winner + 1, sz(p[winner]));
+        printf("%d%3d\n", winner + 1, p[winner].size());
     }
     return 0;
 }
