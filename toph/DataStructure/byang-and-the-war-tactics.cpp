@@ -28,7 +28,7 @@ int main(){
                 memset(fr,0,sizeof(fr));
                 for(int i = l-1; i<r; i++) fr[mp[i]]++;
                 int tot = (r-l+1)/2+1 , sum = 0;
-                for(int i=0;i<1000;i++){
+                for(int i=0;i<n;i++){
                     sum+=fr[i];
                     if(sum>=tot){
                         printf("%lld\n",S[i]);
