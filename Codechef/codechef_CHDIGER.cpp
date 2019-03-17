@@ -1,39 +1,32 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef unsigned long long int ull;
-map<int,int>position;
-string s,c;
-
-ull valueCount(string temp){
-    ull ans = 0;
-    for(int i=0;i<temp.size();i++)
-        if(!position[i]) ans = (ans*10)+(temp[i]-48);
-    return ans;
-}
+typedef long long int ll;
 
 int main(){
-    int test;
-    scanf("%d",&test);
+    int t;
+    scanf("%d",&t);
     getchar();
-    while(test--){
-        position.clear();
-        cin>>s>>c;
-
-        ull res=valueCount();
-
-        int totalDigit=s.size();
-        for(int i=0;i<totalDigit;i++){
-            string temp=s;
-            temp+=c;
-            position[i]++;
-            ull tempRes = valueCount(temp);
-            if(tempRes<=res) {
-                res=tempRes;
-                s+=c;
-            }
-            else position[i]=0;
-        }
-        printf("%llu\n",res);
+    while(t--){
+    	string s;
+    	ll n,i,q;
+    	cin>>s>>n;
+    	q=s.size();
+    	vector<pair<ll,ll> >v;
+    	for(i=0;i<s.size();i++) v.push_back({s[i]-48,i});
+    	sort(v.begin(),v.end());
+    	ll pos=-1;
+    	for(i=0;i<v.size();i++)
+    		if(q>0 and v[i].first<=n and v[i].second>pos){
+    			printf("%lld",v[i].first);
+    			pos=v[i].second;
+    			q--;
+    		}
+    	while(q>0){
+    		printf("%lld",n);
+    		q--;
+    	}
+    	printf("\n");
     }
+    return 0;
 }
