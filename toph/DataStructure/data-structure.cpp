@@ -8,16 +8,18 @@ typedef tree< pair<int, int>,null_type,less<pair<int, int> >,rb_tree_tag, tree_o
 
 int main(){
     ordered_set lengths;
+    vector<int>collection;
     int n;
     scanf("%d",&n);
     for(int i=0;i<n;i++){
         int l;
         scanf("%d",&l);
-        lengths.insert({l,i});
+        collection.push_back(l);
     }
     for(int i=0;i<n;i++){
         int l;
         scanf("%d",&l);
+        lengths.insert({collection[i],i});
         printf("%d\n",lengths.find_by_order(l-1)->first);
     }
     return 0;
