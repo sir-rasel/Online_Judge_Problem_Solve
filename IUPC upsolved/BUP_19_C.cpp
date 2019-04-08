@@ -57,7 +57,9 @@ int main(){
             if(r>lastIndex) printf("-1\n");
             else{ // print the expected string
                 ll ind = bs(segment,l);
-                ll li=l-1,i=0;
+                ll li;
+                if(l==segment[ind].start) li=0;
+                else li=l-1;
                 bool flag=false;
                 while(true){
                     if(li>=(ll)segment[ind].word.size()) li%=(ll)segment[ind].word.size();
@@ -72,13 +74,12 @@ int main(){
                         ind++;
                         flag=true;
                     }
-                    if(i!=0 and flag==true){
+                    if(flag==true){
                         if(l==segment[ind].start){
                             li=0;
                             flag=false;
                         }
                     }
-                     i++;
                 }
             }
         }
