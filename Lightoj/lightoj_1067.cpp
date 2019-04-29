@@ -2,7 +2,7 @@
 using namespace std;
 
 typedef long long int ll;
-const int mod = 1000000007;
+const int mod = 1000003;
 const int mx = 1000005;
 
 ll fact[mx];
