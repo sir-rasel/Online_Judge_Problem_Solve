@@ -8,14 +8,12 @@ int main(){
         v.assign(1000000, vector<int>());
         for(i=1; i<=n; i++){
             cin>>x;
-            v[x].pb(i);
+            v[x].push_back(i);
         }
         for(i=0; i<m; i++){
             cin>>x>>y;
-            if(v[y].size()>x-1)
-                printf("%d\n", v[y][x - 1]);
-            else
-                printf("0\n");
+            if(v[y].size()>x-1) printf("%d\n", v[y][x - 1]);
+            else printf("0\n");
         }
     }
     return 0;
