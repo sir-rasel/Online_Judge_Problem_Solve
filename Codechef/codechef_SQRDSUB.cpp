@@ -13,7 +13,7 @@ int main(){
         scanf("%d",&n);
         for(int i=1;i<=n;i++) scanf("%d",&a[i]);
 
-        ll ans = (n*(n+1))/2;
+        ll ans = (1LL*n*(n+1))/2;
         int last = 0;
 		for (int i = 1; i <= n; i++)
             if (a[i] % 2 == 0){
