@@ -16,7 +16,6 @@ int main(){
     }
     sort (v.begin(), v.end());
 
-    int timing[k] = {0};
     int cnt = 0;
     multiset <int> p;
 
