@@ -7,12 +7,12 @@ int weight[505][505];
 
 void dijkstra(int start,vector<int>edge[]){
 	cost[start]=0;
-	priority_queue<pair<int,int> >Q;
+	queue<pair<int,int> >Q;
 	Q.push({0,start});
 
 	while(!Q.empty()){
-		int w = Q.top().first;
-		int node = Q.top().second;
+		int w = Q.front().first;
+		int node = Q.front().second;
 		Q.pop();
 		if(cost[node]!=w) continue;
 
