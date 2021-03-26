@@ -3,28 +3,25 @@ using namespace std;
 
 typedef long long int ll;
 const int  MAX = 1000007;
+bool a[MAX+5];
 
 vector<int>prime;
-
 void sieve(){
-	bool a[MAX+5];
-	memset(a, 0, sizeof(a));
-
-	for(int i = 2; i <= MAX; i++)
-		if(a[i] == 0)
-			for (int j = i + i; j <= MAX; j+=i) a[j] = 1;
-
+    a[2] = false;
+    for(int i=4;i<=MAX; i+=2) a[i]=true;
+	for(int i = 3; i*i <= MAX; i++)
+		if(a[i] == false)
+			for (int j = i*i; j <= MAX; j+=2*i)
+                a[j] = true;
 
 	for (int i = 2; i <= MAX; i++)
-		if(a[i] == 0)
+		if(a[i] == false)
 			prime.push_back(i);
 }
 
 ll nod(ll n){
     ll sum=1;
-    ll sqt = sqrt(n);
-    for(int i=0;i<=prime.size()-1 and prime[i]<=sqt;i++){
-        if(n<prime[i]) break;
+    for(int i=0;i<prime.size() and prime[i]*prime[i]<=n;i++){
         ll counter=0;
         while(n%prime[i]==0){
             counter++;
@@ -33,8 +30,7 @@ ll nod(ll n){
         sum*=(counter+1);
     }
     if(n!=1) sum*=2;
-    sum--;
-    return sum;
+    return sum-1;
 }
 
 int main(){
